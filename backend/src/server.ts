@@ -1,6 +1,7 @@
 import cors from 'cors';
 import express from 'express'
 import routerLogin from './routers/routerLogin';
+import serverError from './middlewares/serverError';
 require('dotenv/config');
 
 const app = express();
@@ -11,6 +12,7 @@ const PORT = process.env.PORT || 3001;
 
 app.use('/login', routerLogin);
 app.get('/', (_req, res) => res.json({ message: 'active server' }));
+app.use(serverError);
 
 app.listen(+PORT, () => {
   console.log(`Online at the Port ${PORT}`);
