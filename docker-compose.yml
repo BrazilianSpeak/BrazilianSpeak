@@ -1,0 +1,51 @@
+version: "3.9"
+services:
+  frontend:
+    container_name: frontend
+    build: ./frontend # caminho do dockerfile
+    environment:
+      - REACT_APP_BACKEND_HOSTNAME=localhost
+      - REACT_APP_BACKEND_PORT=3001
+    ports:
+      - 3000:3000
+    command: npm start # comando a ser executado assim que a aplicação subir
+    restart: on-failure
+    depends_on:
+      backend:
+        condition: service_started
+  
+  backend:
+    container_name: backend
+    build: ./backend # caminho do dockerfile
+    environment:
+      - PORT=3001
+      - SECRET=super_senha
+      - DATABASE_URL=postgresql://root:password@postgresdb:5432/to-do_List
+    ports:
+      - 3001:3001
+    command: npm run docker # comando a ser executado assim que a aplicação subir
+    restart: on-failure
+    depends_on:
+      postgresdb:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3001"] # Caso utilize outra porta interna para o back, altere ela aqui também
+      timeout: 10s
+      retries: 5
+  
+  postgresdb:
+    container_name: postgres
+    image: postgres:14.3-alpine
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=to-do_List
+    ports:
+      - 3002:5432
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-d", "db_prod"]
+      interval: 30s
+      timeout: 60s
+      retries: 10
+      start_period: 30s
