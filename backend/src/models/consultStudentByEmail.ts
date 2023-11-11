@@ -11,6 +11,7 @@ async function consultStudentByEmail(email: string) {
         password: true,
         country: true,
         presentation: true,
+        lastLogin: true,
       },
     });
 
