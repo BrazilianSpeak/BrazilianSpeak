@@ -19,9 +19,9 @@ model Student {
   country      String
   presentation String
   status       String
-  lastLogin    DateTime
+  lastLogin    DateTime?
   createIn     DateTime    @default(now())
-  updatedAt    DateTime
+  updatedAt    DateTime?
   Classroom    Classroom[]
 
   @@map("students")
@@ -37,9 +37,9 @@ model Teacher {
   languages    Json[]
   presentation String
   status       String
-  lastLogin    DateTime
+  lastLogin    DateTime?
   createIn     DateTime    @default(now())
-  updatedAt    DateTime
+  updatedAt    DateTime?
   Classroom    Classroom[]
 
   @@map("teachers")

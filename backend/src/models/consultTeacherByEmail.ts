@@ -10,6 +10,7 @@ async function consultTeacherByEmail(email: string) {
         email: true,
         password: true,
         presentation: true,
+        lastLogin: true,
       },
     });
 
