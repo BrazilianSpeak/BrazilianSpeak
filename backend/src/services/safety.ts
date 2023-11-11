@@ -2,7 +2,7 @@ import { compareSync, hash } from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 require('dotenv/config');
 
-const SECRET = process.env.SECRET || 'invalid';
+const SECRET = process.env.SECRET || 'SUPER_PASSWORD';
 
 interface IEmail {
   id: number;
