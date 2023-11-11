@@ -19,14 +19,15 @@ const createStudent = async (student: IStudent) => {
         company: student.company,
         country: student.country,
         presentation: student.presentation,
+        lastLogin: new Date(),
         status: 'Active',
       },
-      select: { id: true, name: true, email: true, createIn: true },
+      select: { id: true, name: true, email: true, lastLogin: true },
     });
 
     return createdUser;
   } catch (error) {
-    console.log('Error creating new user');
+    console.log('Error creating new student');
     console.log(error);
     throw new Error('');
   }
