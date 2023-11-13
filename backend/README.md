@@ -1,14 +1,11 @@
-Node criado seguindo o site abaixo: <br>
-`https://dev.to/rogeriorioli/iniciando-um-projeto-nodejs-express-com-typescript-4bfl`
-
 Transformando o projeto em JS: <br>
 `npx tsc`
 
-Iniciar projeto com nodemon:
+Iniciar projeto com nodemon em modo de desenvolvimento:
 `npm run dev`
 
-Iniciar projeto:
-`npm run dev`
+Iniciar projeto em modo de produção:
+`npm start`
 
 ## Tecnologias usadas:
 
