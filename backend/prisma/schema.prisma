@@ -51,6 +51,7 @@ model Classroom {
   student    Student  @relation(fields: [id_student], references: [id])
   id_teacher Int
   teacher    Teacher  @relation(fields: [id_teacher], references: [id])
+  roomId     String
   scheduling DateTime
   status     String
   createIn   DateTime @default(now())
