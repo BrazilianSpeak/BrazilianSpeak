@@ -46,16 +46,18 @@ model Teacher {
 }
 
 model Classroom {
-  id         Int      @id @default(autoincrement())
-  id_student Int
-  student    Student  @relation(fields: [id_student], references: [id])
-  id_teacher Int
-  teacher    Teacher  @relation(fields: [id_teacher], references: [id])
-  roomId     String
-  scheduling DateTime
-  status     String
-  createIn   DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id            Int      @id @default(autoincrement())
+  id_student    Int
+  student       Student  @relation(fields: [id_student], references: [id])
+  id_teacher    Int
+  teacher       Teacher  @relation(fields: [id_teacher], references: [id])
+  roomId        String
+  scheduling    DateTime
+  student_grade Int
+  teacher_grade Int
+  status        String
+  createIn      DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 
   @@map("classrooms")
 }
