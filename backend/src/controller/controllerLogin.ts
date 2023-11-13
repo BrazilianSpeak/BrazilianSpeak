@@ -32,6 +32,7 @@ export const controllerLoginStudent = async (
           name: replyIfTheEmailExists.name,
           email,
           country: replyIfTheEmailExists.country,
+          lastLogin: replyIfTheEmailExists.lastLogin,
           token,
         });
     }
@@ -70,6 +71,7 @@ export const controllerLoginTeacher = async (
           email,
           country: replyIfTheEmailExists.country,
           languages: replyIfTheEmailExists.languages,
+          lastLogin: replyIfTheEmailExists.lastLogin,
           token,
         });
     }
