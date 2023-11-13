@@ -1,0 +1,339 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Brazilian Speak school API",
+    "contact": {
+      "email": "leandrochagask@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3001",
+      "description": "Local server"
+    }
+  ],
+  "paths": {
+    "/create/student": {
+      "post": {
+        "summary": "Create a new student",
+        "description": "This route will be responsible for creating a new user.",
+        "tags": ["Create new user"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/Student"
+              },
+              "example": {
+                "name": "Aluno Briano",
+                "email": "aluno@git.com",
+                "password": "1020300",
+                "company": "none",
+                "country": "Brazil",
+                "presentation": "I want to visit the beautiful beaches of Brazil."
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Registered"
+                },
+                "example": {
+                  "id": 1,
+                  "name": "Aluno Briano",
+                  "email": "aluno@git.com",
+                  "lastLogin": "2023-11-12T23:58:43.813Z",
+                  "token": "eyJhbGciOiJI..."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/create/teacher": {
+      "post": {
+        "summary": "Create a new teacher",
+        "description": "This route will be responsible for creating a new teacher.",
+        "tags": ["Create new user"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/Teacher"
+              },
+              "example": {
+                "name": "Professor Briano",
+                "email": "professor@git.com",
+                "password": "1020300",
+                "company": "none",
+                "country": "Brazil",
+                "languages": [
+                  { "language": "Portuguese", "level": "Fluent" },
+                  { "language": "English", "level": "Fluent" }
+                ],
+                "presentation": "I have been a Portuguese teacher for 10 years and speak fluent English."
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Registered"
+                },
+                "example": {
+                  "id": 1,
+                  "name": "Professor Briano",
+                  "email": "professor@git.com",
+                  "lastLogin": "2023-11-12T23:58:43.813Z",
+                  "token": "eyJhbGciOiJI..."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/login/student": {
+      "post": {
+        "summary": "User login",
+        "description": "This route will be responsible for user login.",
+        "tags": ["Login"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/Login"
+              },
+              "example": {
+                "email": "aluno@git.com",
+                "password": "1020300"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/User_Login"
+                },
+                "example": {
+                  "id": 1,
+                  "name": "Aluno Briano",
+                  "email": "aluno@git.com",
+                  "country": "Brazil",
+                  "lastLogin": "2023-11-13T02:02:26.017Z",
+                  "token": "eyJhbGciOiJIUzI1..."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/login/teacher": {
+      "post": {
+        "summary": "Teacher login",
+        "description": "This route will be responsible for user teacher.",
+        "tags": ["Login"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/Login"
+              },
+              "example": {
+                "email": "professor@git.com",
+                "password": "1020300"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Teacher_Login"
+                },
+                "example": {
+                  "id": 2,
+                  "name": "Professor Briano",
+                  "email": "professor@git.com",
+                  "country": "Brazil",
+                  "languages": [
+                    {
+                      "level": "Fluent",
+                      "language": "Portuguese"
+                    },
+                    {
+                      "level": "Fluent",
+                      "language": "English"
+                    }
+                  ],
+                  "lastLogin": "2023-11-13T02:02:30.894Z",
+                  "token": "eyJhbGciOiJIUzI1..."
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Student": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "company": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "presentation": {
+            "type": "string"
+          }
+        }
+      },
+      "Registered": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "lastLogin": {
+            "type": "string"
+          },
+          "token": {
+            "type": "string"
+          }
+        }
+      },
+      "Teacher": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "company": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "languages": {
+            "type": "object[]"
+          },
+          "presentation": {
+            "type": "string"
+          }
+        }
+      },
+      "Login": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "User_Login": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "lastLogin": {
+            "type": "string"
+          },
+          "token": {
+            "type": "string"
+          }
+        }
+      },
+      "Teacher_Login": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "languages": {
+            "type": "object[]"
+          },
+          "lastLogin": {
+            "type": "string"
+          },
+          "token": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
