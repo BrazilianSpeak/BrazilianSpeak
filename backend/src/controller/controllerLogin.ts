@@ -1,6 +1,9 @@
 import { NextFunction, Request, Response } from 'express';
 import { createToken, validBcrypt } from '../services/safety';
-import { serviceLoginStudent, serviceLoginTeacher } from '../services/serviceLogin';
+import {
+  serviceLoginStudent,
+  serviceLoginTeacher,
+} from '../services/serviceLogin';
 
 export const controllerLoginStudent = async (
   req: Request,
@@ -24,7 +27,12 @@ export const controllerLoginStudent = async (
 
       return res
         .status(200)
-        .json({ name: replyIfTheEmailExists.name, email, country: replyIfTheEmailExists.country, token });
+        .json({
+          name: replyIfTheEmailExists.name,
+          email,
+          country: replyIfTheEmailExists.country,
+          token,
+        });
     }
 
     return res.status(400).json({ message: 'invalid password' });
@@ -55,7 +63,13 @@ export const controllerLoginTeacher = async (
 
       return res
         .status(200)
-        .json({ name: replyIfTheEmailExists.name, email, token });
+        .json({
+          name: replyIfTheEmailExists.name,
+          email,
+          country: replyIfTheEmailExists.country,
+          languages: replyIfTheEmailExists.languages,
+          token,
+        });
     }
 
     return res.status(400).json({ message: 'invalid password' });
@@ -63,5 +77,3 @@ export const controllerLoginTeacher = async (
     next(error);
   }
 };
-
-
