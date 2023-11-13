@@ -28,6 +28,7 @@ export const controllerLoginStudent = async (
       return res
         .status(200)
         .json({
+          id: replyIfTheEmailExists.id,
           name: replyIfTheEmailExists.name,
           email,
           country: replyIfTheEmailExists.country,
@@ -64,6 +65,7 @@ export const controllerLoginTeacher = async (
       return res
         .status(200)
         .json({
+          id: replyIfTheEmailExists.id,
           name: replyIfTheEmailExists.name,
           email,
           country: replyIfTheEmailExists.country,
